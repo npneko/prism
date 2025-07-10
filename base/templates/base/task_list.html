@@ -8,7 +8,7 @@
 
 <hr>
 <h1>My To Do List</h1>
-<a href="{% url 'task-create' %}">Add Task</a>
+<a href="{% url 'task_create' %}">Add Task</a>
 
 <form method="GET">
     <input type="text" name="search-area" value="{{search_input}}">
@@ -28,13 +28,13 @@
             {{task.title}}
         </td>
         <td>
-            <a href="{% url 'task' task.id %}">View</a>
+            <a href="{% url 'task_detail' task.id %}">View</a>
         </td>
         <td>
-            <a href="{% url 'task-update' task.id %}">Edit</a>
+            <a href="{% url 'task_update' task.id %}">Edit</a>
         </td>
         <td>
-            <a href="{% url 'task-delete' task.id %}">Delete</a>
+            <a href="{% url 'task_delete' task.id %}">Delete</a>
         </td>
     </tr>
 

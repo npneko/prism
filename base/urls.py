@@ -1,13 +1,25 @@
 from django.urls import path
-from .views import TaskList, TaskDetail, TaskCreate, TaskUpdate, TaskDelete, CustomLoginView, CustomLogoutView, RegisterPage
+from .views import (
+    TaskListView,
+    TaskDetailView,
+    TaskCreateView,
+    TaskUpdateView,
+    TaskDeleteView,
+    CustomLoginView,
+    CustomLogoutView,
+    RegisterView,
+)
 
 urlpatterns = [
-    path("login/", CustomLoginView.as_view(), name="login"),
-    path("logout/", CustomLogoutView.as_view(http_method_names=['get', 'post', 'options']), name="logout"),
-    path("register/", RegisterPage.as_view(), name="register"),
-    path("", TaskList.as_view(), name="tasks"),
-    path("task/<int:pk>", TaskDetail.as_view(), name="task"),
-    path("task-create", TaskCreate.as_view(), name="task-create"),
-    path("task-update/<int:pk>", TaskUpdate.as_view(), name="task-update"),
-    path("task-delete/<int:pk>", TaskDelete.as_view(), name="task-delete"),
+    # Authentication URLs
+    path('login/', CustomLoginView.as_view(), name='login'),
+    path('logout/', CustomLogoutView.as_view(), name='logout'),
+    path('register/', RegisterView.as_view(), name='register'),
+    
+    # Task URLs
+    path('', TaskListView.as_view(), name='task_list'),
+    path('task/<int:pk>/', TaskDetailView.as_view(), name='task_detail'),
+    path('task/create/', TaskCreateView.as_view(), name='task_create'),
+    path('task/<int:pk>/update/', TaskUpdateView.as_view(), name='task_update'),
+    path('task/<int:pk>/delete/', TaskDeleteView.as_view(), name='task_delete'),
 ]
